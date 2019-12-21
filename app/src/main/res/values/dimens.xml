@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="login_margin_horizontal">24dp</dimen>
+    <dimen name="login_margin_gap_vertical">24dp</dimen>
+    <dimen name="login_margin_vertical">96dp</dimen>
+
+    <dimen name="reader_inspection_margin_outline">16dp</dimen>
+    <dimen name="reader_inspection_margin_gap_vertical">@dimen/login_margin_gap_vertical</dimen>
+
+    <dimen name="search_margin_horizontal">@dimen/login_margin_horizontal</dimen>
+    <dimen name="search_margin_vertical">@dimen/login_margin_horizontal</dimen>
+
+    <dimen name="search_item_margin_outline">8dp</dimen>
+</resources>
