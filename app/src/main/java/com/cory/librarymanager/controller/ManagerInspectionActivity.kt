@@ -23,5 +23,8 @@ class ManagerInspectionActivity : AppCompatActivity() {
         findViewById<Button>(R.id.bookReturn).setOnClickListener {
             startActivity(BookReturnActivity.newIntent(this))
         }
+        findViewById<Button>(R.id.cardRegister).setOnClickListener {
+            startActivity(CardRegisterActivity.newIntent(this))
+        }
     }
 }

@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".controller.BookReturnActivity"></activity>
+        <activity android:name=".controller.CardRegisterActivity"></activity>
+        <activity android:name=".controller.BookReturnActivity" />
         <activity android:name=".controller.PurchaseActivity" />
         <activity
             android:name=".controller.SearchActivity"

@@ -9,6 +9,7 @@ import java.sql.Date
 import android.content.ContentValues
 import android.util.Log
 import com.cory.librarymanager.model.LoanRecord
+import com.cory.librarymanager.model.Reader
 
 
 class DBDao private constructor(context: Context) {
@@ -36,8 +37,6 @@ class DBDao private constructor(context: Context) {
             return isLogin
         }
     }
-
-
 
     fun loginForManager(account:String,password:String):Boolean{
         with(Table.Manager){
@@ -177,6 +176,25 @@ class DBDao private constructor(context: Context) {
     fun deleteLoanRecord(loanRecord: LoanRecord){
         with(Table.LoanRecord){
             db.delete(TABLE_NAME,"$ID=?", arrayOf(loanRecord.id))
+        }
+    }
+
+    fun getReader(account: String):Reader?{
+        with(Table.Reader){
+            val cursor=db.rawQuery("select * from $TABLE_NAME where $ID=?",
+                arrayOf(account)
+            )
+            var reader:Reader?=null
+            if(cursor.moveToFirst()){
+                reader=Reader(
+                    cursor.getString(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3)
+                )
+            }
+            cursor.close()
+            return reader
         }
     }
 }
