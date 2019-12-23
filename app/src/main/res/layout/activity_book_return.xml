@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.SearchActivity">
+    tools:context=".controller.BookReturnActivity">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search"
@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:queryHint="书名，作者，ISBN" />
+        app:queryHint="学号" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/result"

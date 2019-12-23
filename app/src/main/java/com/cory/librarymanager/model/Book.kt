@@ -10,6 +10,7 @@ data class Book(
     val publishDate: Date,
     val price: Float,
     val registerDate: Date,
-    val amount: Int,
+    var quantity: Int,
+    val totalQuantity: Int,
     val libraryId: String
 )

@@ -7,8 +7,9 @@
     <dimen name="reader_inspection_margin_outline">16dp</dimen>
     <dimen name="reader_inspection_margin_gap_vertical">@dimen/login_margin_gap_vertical</dimen>
 
-    <dimen name="search_margin_horizontal">@dimen/login_margin_horizontal</dimen>
-    <dimen name="search_margin_vertical">@dimen/login_margin_horizontal</dimen>
+    <dimen name="search_margin_horizontal">8dp</dimen>
+    <dimen name="search_margin_vertical">8dp</dimen>
 
-    <dimen name="search_item_margin_outline">8dp</dimen>
+    <dimen name="search_item_margin_full">16dp</dimen>
+    <dimen name="search_item_margin_half">8dp</dimen>
 </resources>

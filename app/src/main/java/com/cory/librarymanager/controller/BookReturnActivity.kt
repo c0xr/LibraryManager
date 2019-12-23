@@ -12,29 +12,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cory.librarymanager.R
 import com.cory.librarymanager.dao.DBDao
-import com.cory.librarymanager.model.Book
 import com.google.android.material.snackbar.Snackbar
-import java.util.*
 
-class SearchActivity : AppCompatActivity() {
-    private lateinit var bookList:List<Book>
+class BookReturnActivity : AppCompatActivity() {
     private lateinit var snackBar:Snackbar
 
-    companion object {
+    companion object{
         fun newIntent(context: Context): Intent {
-            return Intent(context, SearchActivity::class.java)
+            return Intent(context,BookReturnActivity::class.java)
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_search)
+        setContentView(R.layout.activity_book_return)
         val searchView = findViewById<SearchView>(R.id.search)
         val resultList = findViewById<RecyclerView>(R.id.result)
-        //获得所有图书
-        bookList = DBDao.get(this).getAllBooks()
         //设置适配器
-        val adapter = BookLoanAdapter(bookList, this)
+        val adapter = BookReturnAdapter(emptyList(), emptyList(),this)
         resultList.adapter = adapter
         //设置布局管理器
         resultList.layoutManager = LinearLayoutManager(this)
@@ -48,27 +43,25 @@ class SearchActivity : AppCompatActivity() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
-                //过滤list数据
-                adapter.list = bookList.filter {
-                    val input=newText?.toLowerCase(Locale.CHINA) ?: ""
-                    it.name.toLowerCase(Locale.CHINA).contains(input)||
-                            it.author.toLowerCase(Locale.CHINA).contains(input)||
-                            it.id.toLowerCase(Locale.CHINA).contains(input)
-                }
-                //通知更新UI
-                adapter.notifyDataSetChanged()
-                return true
+                return false
             }
 
             override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
+                val dao=DBDao.get(this@BookReturnActivity)
+                val recordList=dao.getAllLoanRecords(query?:"")
+                val bookList=dao.getAllBooks(recordList)
+                adapter.bookList=bookList
+                adapter.recordList=recordList
+                //通知更新UI
+                adapter.notifyDataSetChanged()
+                return true
             }
         })
 
         //初始化snackBar
         snackBar= Snackbar.make(
             findViewById(android.R.id.content),
-            "借阅成功",
+            "退还成功",
             Snackbar.LENGTH_SHORT)
         snackBar.view.setBackgroundColor(Color.WHITE)
         val text=snackBar.view

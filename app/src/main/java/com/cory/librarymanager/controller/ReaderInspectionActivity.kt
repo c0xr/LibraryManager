@@ -18,9 +18,5 @@ class ReaderInspectionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reader_inspection_activity)
-
-        findViewById<Button>(R.id.search).setOnClickListener {
-            startActivity(SearchActivity.newIntent(this))
-        }
     }
 }

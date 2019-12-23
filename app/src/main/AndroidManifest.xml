@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.cory.librarymanager">
 
     <application
@@ -9,12 +10,25 @@
         android:roundIcon="@drawable/books"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".controller.SearchActivity"></activity>
-        <activity android:name=".controller.LMInspectionActivity" />
-        <activity android:name=".controller.ManagerInspectionActivity" />
-        <activity android:name=".controller.ReaderInspectionActivity" />
-        <activity android:name=".controller.LoginActivity">
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".controller.BookReturnActivity"></activity>
+        <activity android:name=".controller.PurchaseActivity" />
+        <activity
+            android:name=".controller.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".controller.LMInspectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".controller.ManagerInspectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".controller.ReaderInspectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".controller.LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
