@@ -12,23 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".controller.CardRegisterActivity"></activity>
-        <activity android:name=".controller.BookReturnActivity" />
-        <activity android:name=".controller.PurchaseActivity" />
-        <activity
-            android:name=".controller.SearchActivity"
+        <activity android:name=".controller.CardRegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".controller.BookReturnActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".controller.PurchaseActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".controller.SearchActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".controller.LMInspectionActivity"
+        <activity android:name=".controller.LMInspectionActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".controller.ManagerInspectionActivity"
+        <activity android:name=".controller.ManagerInspectionActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".controller.ReaderInspectionActivity"
+        <activity android:name=".controller.ReaderInspectionActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".controller.LoginActivity"
+        <activity android:name=".controller.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

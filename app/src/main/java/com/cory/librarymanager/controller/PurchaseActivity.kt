@@ -10,6 +10,7 @@ import com.cory.librarymanager.R
 import com.cory.librarymanager.dao.DBDao
 import com.cory.librarymanager.model.Book
 import java.sql.Date
+import java.text.NumberFormat
 
 class PurchaseActivity : AppCompatActivity() {
     companion object{

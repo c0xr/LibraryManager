@@ -6,26 +6,18 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="75dp"
+    <ImageView
+        android:id="@+id/picture"
+        android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:layout_marginStart="@dimen/search_item_margin_full"
         android:layout_marginTop="@dimen/search_item_margin_full"
         android:layout_marginBottom="@dimen/search_item_margin_full"
-        app:cardElevation="0dp"
+        android:adjustViewBounds="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/picture"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:adjustViewBounds="true"
-            app:srcCompat="@drawable/kotlin_in_action" />
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/book" />
 
     <TextView
         android:id="@+id/name"
@@ -35,9 +27,9 @@
         android:layout_marginTop="@dimen/search_item_margin_full"
         android:layout_marginEnd="@dimen/search_item_margin_full"
         android:text="TextView"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/amount"
-        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintStart_toEndOf="@+id/picture"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -46,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/search_item_margin_half"
         android:layout_marginEnd="@dimen/search_item_margin_half"
+        android:singleLine="true"
         android:text="TextView"
         android:textColor="@android:color/secondary_text_dark"
         app:layout_constraintEnd_toStartOf="@+id/loan"

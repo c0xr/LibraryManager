@@ -57,4 +57,13 @@ class Table {
             const val LOAN_DATE = "loanDate"
         }
     }
+
+    class LibraryCard {
+        companion object {
+            const val TABLE_NAME = "libraryCard"
+            const val READER_ID = "readerId"
+            const val LEVEL = "level"
+            const val REGISTER_DATE = "registerDate"
+        }
+    }
 }

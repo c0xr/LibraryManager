@@ -47,7 +47,7 @@ class BookLoanHolder(itemView: View, private val context: Context) :
                 //增加借阅记录
                 val record=LoanRecord(
                     id = UUID.randomUUID().toString(),
-                    readerId = UUID.randomUUID().toString(),
+                    readerId = "20176505",
                     bookId = book.id,
                     loanDate = Date(System.currentTimeMillis())
                 )

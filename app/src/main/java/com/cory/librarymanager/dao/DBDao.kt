@@ -8,6 +8,7 @@ import com.cory.librarymanager.util.Table
 import java.sql.Date
 import android.content.ContentValues
 import android.util.Log
+import com.cory.librarymanager.model.LibraryCard
 import com.cory.librarymanager.model.LoanRecord
 import com.cory.librarymanager.model.Reader
 
@@ -195,6 +196,16 @@ class DBDao private constructor(context: Context) {
             }
             cursor.close()
             return reader
+        }
+    }
+
+    fun addLibraryCard(libraryCard: LibraryCard){
+        with(Table.LibraryCard){
+            val values = ContentValues()
+            values.put(READER_ID,libraryCard.readerId)
+            values.put(LEVEL,libraryCard.level)
+            values.put(REGISTER_DATE,libraryCard.readerId.toString())
+            db.insert(TABLE_NAME,null,values)
         }
     }
 }
