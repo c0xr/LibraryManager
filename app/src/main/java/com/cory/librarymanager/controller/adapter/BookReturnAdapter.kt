@@ -40,7 +40,11 @@ class BookReturnHolder(itemView: View, private val context: Context,
     }
 
     override fun onClick(v: View?) {
-        AlertDialog.Builder(context).setMessage("确认退还")
+        var msg="确认退还"
+        if(System.currentTimeMillis()-loanRecord.loanDate.time>2592000000){
+            msg="归还已逾期，缴纳罚金后退还"
+        }
+        AlertDialog.Builder(context).setMessage(msg)
             .setPositiveButton("退还") { dialog, which ->
                 val dao= DBDao.get(context)
                 //删除借阅记录
