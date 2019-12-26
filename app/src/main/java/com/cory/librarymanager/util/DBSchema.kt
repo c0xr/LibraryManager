@@ -14,7 +14,7 @@ class Table {
     class Manager {
         companion object {
             const val TABLE_NAME = "manager"
-            const val ID = "ID"
+            const val ID = "id"
             const val PASSWORD = "password"
             const val NAME = "name"
             const val TEL = "tel"
@@ -24,7 +24,7 @@ class Table {
     class LibraryManager {
         companion object {
             const val TABLE_NAME = "libraryManager"
-            const val ID = "ID"
+            const val ID = "id"
             const val PASSWORD = "password"
             const val NAME = "name"
             const val TEL = "tel"
@@ -35,7 +35,7 @@ class Table {
     class Book {
         companion object {
             const val TABLE_NAME = "book"
-            const val ID = "ID"
+            const val ID = "id"
             const val NAME = "name"
             const val PRESS = "press"
             const val AUTHOR = "author"

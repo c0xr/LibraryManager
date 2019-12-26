@@ -1,4 +1,4 @@
-package com.cory.librarymanager.controller
+package com.cory.librarymanager.controller.activity
 
 import android.content.Context
 import android.content.Intent
@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cory.librarymanager.R
-import com.cory.librarymanager.dao.DBDao
+import com.cory.librarymanager.controller.adapter.BookLoanAdapter
+import com.cory.librarymanager.util.DBDao
 import com.cory.librarymanager.model.Book
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
@@ -29,6 +30,7 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+        title="图书检索"
         val searchView = findViewById<SearchView>(R.id.search)
         val resultList = findViewById<RecyclerView>(R.id.result)
         //获得所有图书

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.LoginActivity">
+    tools:context=".controller.activity.LoginActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -34,6 +34,7 @@
             android:id="@+id/account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:maxLength="13"
             android:singleLine="true"
             android:text="m100" />

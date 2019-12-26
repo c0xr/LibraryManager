@@ -1,4 +1,4 @@
-package com.cory.librarymanager.controller
+package com.cory.librarymanager.controller.activity
 
 import android.content.Context
 import android.content.Intent
@@ -7,15 +7,14 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import com.cory.librarymanager.R
-import com.cory.librarymanager.dao.DBDao
+import com.cory.librarymanager.util.DBDao
 import com.cory.librarymanager.model.Book
 import java.sql.Date
-import java.text.NumberFormat
 
 class PurchaseActivity : AppCompatActivity() {
     companion object{
         fun newIntent(context: Context): Intent {
-            return Intent(context,PurchaseActivity::class.java)
+            return Intent(context, PurchaseActivity::class.java)
         }
     }
 
@@ -45,7 +44,7 @@ class PurchaseActivity : AppCompatActivity() {
                 quantityText.text.toString().toInt(),
                 libraryIdText.text.toString()
             )
-            val dao=DBDao.get(this)
+            val dao= DBDao.get(this)
             dao.addBook(book)
             finish()
         }

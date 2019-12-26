@@ -28,7 +28,7 @@
         android:layout_marginEnd="@dimen/search_item_margin_full"
         android:text="TextView"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/quantity"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/picture"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,58 +37,49 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/search_item_margin_half"
-        android:layout_marginEnd="@dimen/search_item_margin_half"
+        android:layout_marginEnd="@dimen/search_item_margin_full"
         android:singleLine="true"
         android:text="TextView"
         android:textColor="@android:color/secondary_text_dark"
-        app:layout_constraintEnd_toStartOf="@+id/loan"
+        app:layout_constraintEnd_toStartOf="@+id/libId"
         app:layout_constraintStart_toStartOf="@+id/name"
         app:layout_constraintTop_toBottomOf="@+id/name" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/loan"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/search_item_margin_half"
-        android:layout_marginBottom="@dimen/search_item_margin_half"
-        android:insetLeft="@dimen/search_item_margin_half"
-        android:insetTop="@dimen/search_item_margin_half"
-        android:insetRight="@dimen/search_item_margin_half"
-        android:insetBottom="@dimen/search_item_margin_half"
-        android:text="借阅"
-        android:textSize="12sp"
-        app:backgroundTint="@color/colorAccent"
-        app:cornerRadius="8dp"
-        app:icon="@drawable/upload"
-        app:iconSize="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name"
-        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/isbn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/search_item_margin_full"
-        android:layout_marginBottom="@dimen/search_item_margin_full"
+        android:layout_marginEnd="@dimen/search_item_margin_full"
         android:text="TextView"
         android:textColor="@android:color/secondary_text_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/author"
+        app:layout_constraintBottom_toBottomOf="@+id/info"
+        app:layout_constraintEnd_toStartOf="@+id/info"
         app:layout_constraintStart_toStartOf="@+id/author"
         app:layout_constraintTop_toBottomOf="@+id/author"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/quantity"
-        android:layout_width="wrap_content"
+        android:id="@+id/info"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/search_item_margin_full"
-        android:layout_marginEnd="@dimen/search_item_margin_full"
+        android:layout_marginTop="@dimen/search_item_margin_half"
+        android:layout_marginEnd="@dimen/reader_inspection_margin_outline"
+        android:layout_marginBottom="@dimen/reader_inspection_margin_outline"
         android:text="TextView"
         android:textColor="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/author"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/libId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/search_item_margin_full"
+        android:layout_marginBottom="@dimen/search_item_margin_half"
+        android:text="TextView"
+        android:textColor="@color/orange"
+        app:layout_constraintBottom_toTopOf="@+id/info"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

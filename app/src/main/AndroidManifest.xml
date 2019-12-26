@@ -12,21 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".controller.CardRegisterActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".controller.BookReturnActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".controller.PurchaseActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".controller.SearchActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".controller.LMInspectionActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".controller.ManagerInspectionActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".controller.ReaderInspectionActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".controller.LoginActivity"
+
+        <activity android:name=".controller.activity.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,6 +21,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity android:name=".controller.activity.LMInspectionActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".controller.activity.LoginActivity"/>
+        <activity android:name=".controller.activity.ManagerInspectionActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".controller.activity.LoginActivity"/>
+        <activity android:name=".controller.activity.ReaderInspectionActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".controller.activity.LoginActivity"/>
+
+
+        <activity android:name=".controller.activity.CardRegisterActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".controller.activity.ManagerInspectionActivity"/>
+        <activity android:name=".controller.activity.BookReturnActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".controller.activity.ManagerInspectionActivity"/>
+        <activity android:name=".controller.activity.SearchActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".controller.activity.ManagerInspectionActivity"/>
+
+        <activity android:name=".controller.activity.PurchaseActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".controller.activity.LMInspectionActivity"/>
+
     </application>
 
 </manifest>

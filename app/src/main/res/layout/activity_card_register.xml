@@ -4,20 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.CardRegisterActivity">
+    tools:context=".controller.activity.CardRegisterActivity">
 
-    <SearchView
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/search_item_margin_half"
         android:layout_marginTop="@dimen/search_item_margin_half"
         android:layout_marginEnd="@dimen/search_item_margin_half"
+        app:queryHint="学号"
+        app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </SearchView>
+    </androidx.appcompat.widget.SearchView>
 
     <TextView
         android:id="@+id/info"
@@ -102,6 +104,28 @@
 
             <TextView
                 android:id="@+id/tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="TextView"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/search_item_margin_full">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="借阅等级"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/level"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end"

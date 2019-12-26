@@ -1,13 +1,10 @@
-package com.cory.librarymanager.dao
+package com.cory.librarymanager.util
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.cory.librarymanager.model.Book
-import com.cory.librarymanager.util.DBHelper
-import com.cory.librarymanager.util.Table
 import java.sql.Date
 import android.content.ContentValues
-import android.util.Log
 import com.cory.librarymanager.model.LibraryCard
 import com.cory.librarymanager.model.LoanRecord
 import com.cory.librarymanager.model.Reader
@@ -16,9 +13,10 @@ import com.cory.librarymanager.model.Reader
 class DBDao private constructor(context: Context) {
     companion object {
         private var instance: DBDao? = null
-        fun get(context: Context): DBDao{
+        fun get(context: Context): DBDao {
             if (instance == null) {
-                instance = DBDao(context)
+                instance =
+                    DBDao(context)
             }
             return instance!!
         }
@@ -85,17 +83,6 @@ class DBDao private constructor(context: Context) {
         }
     }
 
-    fun addLoanRecord(loanRecord: LoanRecord){
-        val values=ContentValues()
-        with(Table.LoanRecord){
-            values.put(ID,loanRecord.id)
-            values.put(READER_ID,loanRecord.readerId)
-            values.put(BOOK_ID,loanRecord.bookId)
-            values.put(LOAN_DATE,loanRecord.loanDate.toString())
-            db.insert(TABLE_NAME,null,values)
-        }
-    }
-
     fun updateBookQuantity(book: Book){
         val values = ContentValues()
         with(Table.Book){
@@ -126,15 +113,17 @@ class DBDao private constructor(context: Context) {
         return list
     }
 
-    fun getAllBooks(recordList: List<LoanRecord>):List<Book>{
-        val bookList= mutableListOf<Book>()
-        with(Table.Book){
-            recordList.forEach {
-                val cursor=db.rawQuery("select * from $TABLE_NAME where $ID=?",
-                    arrayOf(it.bookId)
-                )
-                cursor.moveToFirst()
-                val book=Book(
+    fun getBooksAndRecords(account: String,bookList: MutableList<Book>,
+                           recordList: MutableList<LoanRecord>){
+        val cursor=db.rawQuery("select * from ${Table.Book.TABLE_NAME}," +
+                " ${Table.LoanRecord.TABLE_NAME}" +
+                " where ${Table.LoanRecord.READER_ID}=?" +
+                " and ${Table.LoanRecord.BOOK_ID}=${Table.Book.TABLE_NAME}.${Table.Book.ID}",
+            arrayOf(account)
+        )
+        while (cursor.moveToNext()){
+            bookList.add(
+                Book(
                     id = cursor.getString(0),
                     name = cursor.getString(1),
                     press = cursor.getString(2),
@@ -145,33 +134,29 @@ class DBDao private constructor(context: Context) {
                     quantity = cursor.getInt(7),
                     totalQuantity = cursor.getInt(8),
                     libraryId = cursor.getString(9)
+               )
+            )
+            recordList.add(
+                LoanRecord(
+                    id = cursor.getString(10),
+                    readerId = cursor.getString(11),
+                    bookId = cursor.getString(12),
+                    loanDate = Date.valueOf(cursor.getString(13))
                 )
-                bookList.add(book)
-                cursor.close()
-            }
+            )
         }
-        return bookList
+        cursor.close()
     }
 
-    fun getAllLoanRecords(account: String):List<LoanRecord>{
-        val list= mutableListOf<LoanRecord>()
+    fun addLoanRecord(loanRecord: LoanRecord){
+        val values=ContentValues()
         with(Table.LoanRecord){
-            val cursor=db.rawQuery("select * from $TABLE_NAME where $READER_ID=?",
-                arrayOf(account)
-            )
-            while (cursor.moveToNext()){
-                list.add(
-                    LoanRecord(
-                        cursor.getString(0),
-                        cursor.getString(1),
-                        cursor.getString(2),
-                        Date.valueOf(cursor.getString(3))
-                    )
-                )
-            }
-            cursor.close()
+            values.put(ID,loanRecord.id)
+            values.put(READER_ID,loanRecord.readerId)
+            values.put(BOOK_ID,loanRecord.bookId)
+            values.put(LOAN_DATE,loanRecord.loanDate.toString())
+            db.insert(TABLE_NAME,null,values)
         }
-        return list
     }
 
     fun deleteLoanRecord(loanRecord: LoanRecord){
@@ -188,14 +173,31 @@ class DBDao private constructor(context: Context) {
             var reader:Reader?=null
             if(cursor.moveToFirst()){
                 reader=Reader(
-                    cursor.getString(0),
-                    cursor.getString(1),
-                    cursor.getString(2),
-                    cursor.getString(3)
+                    id = cursor.getString(0),
+                    password = cursor.getString(1),
+                    name = cursor.getString(2),
+                    tel = cursor.getString(3)
                 )
             }
             cursor.close()
             return reader
+        }
+    }
+
+    fun getLibraryCard(id:String):LibraryCard?{
+        with(Table.LibraryCard){
+            var card:LibraryCard?=null
+            val cursor=db.rawQuery("select * from $TABLE_NAME where $READER_ID=?",
+                arrayOf(id))
+            if(cursor.moveToFirst()){
+                card= LibraryCard(
+                    cursor.getString(0),
+                    cursor.getString(1),
+                    Date.valueOf(cursor.getString(2))
+                )
+            }
+            cursor.close()
+            return card
         }
     }
 
@@ -204,7 +206,7 @@ class DBDao private constructor(context: Context) {
             val values = ContentValues()
             values.put(READER_ID,libraryCard.readerId)
             values.put(LEVEL,libraryCard.level)
-            values.put(REGISTER_DATE,libraryCard.readerId.toString())
+            values.put(REGISTER_DATE,Date(System.currentTimeMillis()).toString())
             db.insert(TABLE_NAME,null,values)
         }
     }

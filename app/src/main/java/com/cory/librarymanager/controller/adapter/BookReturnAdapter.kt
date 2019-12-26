@@ -1,4 +1,4 @@
-package com.cory.librarymanager.controller
+package com.cory.librarymanager.controller.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,12 +8,15 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.cory.librarymanager.R
-import com.cory.librarymanager.dao.DBDao
+import com.cory.librarymanager.controller.activity.BookReturnActivity
+import com.cory.librarymanager.util.DBDao
 import com.cory.librarymanager.model.Book
 import com.cory.librarymanager.model.LoanRecord
+import com.cory.librarymanager.util.log
 import com.google.android.material.button.MaterialButton
 
-class BookReturnHolder(itemView: View, private val context: Context) :
+class BookReturnHolder(itemView: View, private val context: Context,
+                       private val adapter: BookReturnAdapter) :
     RecyclerView.ViewHolder(itemView), View.OnClickListener {
     private val nameText: TextView = itemView.findViewById(R.id.name)
     private val authorText: TextView = itemView.findViewById(R.id.author)
@@ -39,7 +42,7 @@ class BookReturnHolder(itemView: View, private val context: Context) :
     override fun onClick(v: View?) {
         AlertDialog.Builder(context).setMessage("确认退还")
             .setPositiveButton("退还") { dialog, which ->
-                val dao=DBDao.get(context)
+                val dao= DBDao.get(context)
                 //删除借阅记录
                 dao.deleteLoanRecord(loanRecord)
                 book.quantity++
@@ -47,20 +50,26 @@ class BookReturnHolder(itemView: View, private val context: Context) :
                 dao.updateBookQuantity(book)
                 //显示借阅成功UI提示
                 (context as BookReturnActivity).showSnackBar()
+                adapter.bookList.removeAt(adapterPosition)
+                adapter.recordList.removeAt(adapterPosition)
+                log(adapter.recordList.size)
+                if(adapter.recordList.size==0){
+                    context.showInfo()
+                }
+                adapter.notifyItemRemoved(adapterPosition)
             }
             .setNegativeButton("取消",null)
-            .setCancelable(false)
             .show()
     }
 }
 
-class BookReturnAdapter(var bookList: List<Book>, var recordList: List<LoanRecord>, private val context: Context) :
+class BookReturnAdapter(var bookList: MutableList<Book>, var recordList: MutableList<LoanRecord>, private val context: Context) :
     RecyclerView.Adapter<BookReturnHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookReturnHolder {
         val view = LayoutInflater.from(context)
             .inflate(R.layout.list_item_book_return, parent, false)
-        return BookReturnHolder(view, context)
+        return BookReturnHolder(view, context,this)
     }
 
     override fun getItemCount(): Int {
