@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cory.librarymanager.R
 import com.cory.librarymanager.controller.adapter.BookOverviewAdapter
 import com.cory.librarymanager.util.DBDao
+import com.cory.librarymanager.util.log
 
 class LMInspectionActivity : AppCompatActivity() {
     companion object{
@@ -35,13 +36,13 @@ class LMInspectionActivity : AppCompatActivity() {
             if(quantityMap[it.libraryId]!=null){
                 quantityMap[it.libraryId]=quantityMap[it.libraryId]!!+it.quantity
             }else{
-                quantityMap[it.libraryId]=0
+                quantityMap[it.libraryId]=it.quantity
             }
 
             if(totalQuantityMap[it.libraryId]!=null){
                 totalQuantityMap[it.libraryId]=totalQuantityMap[it.libraryId]!!+it.totalQuantity
             }else{
-                totalQuantityMap[it.libraryId]=0
+                totalQuantityMap[it.libraryId]=it.totalQuantity
             }
         }
         var content=""

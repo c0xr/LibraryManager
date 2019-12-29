@@ -15,8 +15,7 @@ class DBDao private constructor(context: Context) {
         private var instance: DBDao? = null
         fun get(context: Context): DBDao {
             if (instance == null) {
-                instance =
-                    DBDao(context)
+                instance = DBDao(context)
             }
             return instance!!
         }

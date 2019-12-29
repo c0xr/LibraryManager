@@ -37,6 +37,7 @@ class ReaderLoanAdapter(var bookList: List<Book>, var recordList: List<LoanRecor
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReaderLoanHolder {
         val view = LayoutInflater.from(context)
             .inflate(R.layout.list_item_book_detail, parent, false)
+        view.findViewById<TextView>(R.id.libId).visibility=View.INVISIBLE
         return ReaderLoanHolder(view)
     }
 

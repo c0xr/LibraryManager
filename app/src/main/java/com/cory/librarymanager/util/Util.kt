@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.Log
 import android.widget.Toast
 
-fun log(any:Any){
-    Log.d("TAGG",any.toString())
+fun log(any:Any?){
+    Log.d("TAGG",any?.toString()?:"null")
 }
 
 fun toast(info: String,context: Context) {
